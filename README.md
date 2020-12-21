@@ -1,6 +1,6 @@
 // To run the apllication follow the steps below:
 
-Step 1: Download the project and run npm install from the project root folder (Where package.json is located)
+Step 1: Download the project and run npm install from the project root folder (Where package.json is located) <br />
 Step 2: To run the API'S . From the cmd go to the project root folder. Run npm run start. (This is will start nodemon)
 Step 3: Go to chrome browser or any browser. Or use postman. Hit the following endpoint
         a. http://localhost:3000/alice (This will run the scenario one where alice pusblish a message and sees in timeline)
