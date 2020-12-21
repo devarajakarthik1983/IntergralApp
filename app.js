@@ -19,7 +19,7 @@ userMessage = (name, message) =>{
 
 app.use('/alice' , (req,res,next)=>{
   const alice = userMessage('alice', 'I love the weather today.');
-  res.status(200).json(alice.userTimeline.messages);
+  res.status(200).json(alice.readMessages(alice));
 })
 
  app.use('/alice2bob' ,  async(req,res,next)=>{
@@ -49,6 +49,7 @@ app.use('/charlie' , async(req,res,next)=>{
     const newMessage3 = new SendMessage('New second message');
     bob.publishNewMessage(newMessage3);
     const charlie = userMessage('charlie', 'I\'m in New York today! Anyone wants to have a coffee?');
+    charlie.readMessages(charlie);
     charlie.subscribeTo(alice);
     charlie.subscribeTo(bob);
     const messages = charlie.subscriptionsTimeLine();
@@ -59,10 +60,7 @@ app.use('/charlie' , async(req,res,next)=>{
         createDateTime: moment(msg.createDateTime, 'MMMM Do YYYY, h:mm:ss a').fromNow(true) + ' ago'
       }
     })
-    res.status(200).json({
-      own:charlie.userTimeline.messages,
-      subscribed: formattedMessages
-    });
+    res.status(200).json(formattedMessages);
   }, 1 * 60 * 1000);
 })
 

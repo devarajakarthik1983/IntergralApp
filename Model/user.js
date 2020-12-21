@@ -16,6 +16,7 @@ class User {
     }
 
     readMessages(user) {
+        this.subscribeTo(user);
         return user.userTimeline.messages;
     }
 
